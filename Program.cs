@@ -75,7 +75,7 @@ namespace Part1_Mod4
             }
             Console.WriteLine($"Введено: {color}");
 
-            Console.ReadKey();
+        Console.ReadKey();
         }
     }
 }
