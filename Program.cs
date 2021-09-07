@@ -11,6 +11,7 @@ namespace Part1_Mod4
         static void Main(string[] args)
         {
             goto currentTask;
+            #region 4.1
             //4.1.1 Запишите код, который проверяет следующее выражение: переменная A типа string не равна переменной B типа string.
             //код, приведенный в качестве правильного ответа не компилируется
             //string a, b;
@@ -75,7 +76,9 @@ namespace Part1_Mod4
                     break;
             }
             Console.WriteLine($"Введено: {color}");
+            #endregion 4.1
 
+            #region 4.2
             // Задание 4.2.6 -проверка "бесконечного цикла"
             for (; ; )
             {
@@ -114,8 +117,9 @@ namespace Part1_Mod4
                 Console.Write(item + " ");
             }
             Console.WriteLine($"Последняя буквва имени: {name[name.Length - 1]}");
+            #endregion 4.2
 
-
+            #region 4.3
             //4.3.7  напишите программу, которая переставляет буквы вашего имени в обратном порядке.
             string straightName = "Eugenia";
             char[] charsOfName = straightName.ToCharArray();
@@ -245,7 +249,6 @@ namespace Part1_Mod4
             }
             Console.WriteLine($"{positives} positive items in 2-dim array");
 
-            currentTask:
             //4.3.17 сортировка каждой из строк двумерного массива
             int[,] arr17 = { { -5, 6, 9, 1, 2, -3 }, { -8, 8, 1, 1, 2, -3 } };
             Console.WriteLine("Исходный массив");
@@ -284,7 +287,43 @@ namespace Part1_Mod4
                 }
                 Console.WriteLine();
             }
+            #endregion 4.3
 
+            #region 4.4
+            // 4.4.2 Модифицируйте свою программу для ввода личной информации пользователя так, чтобы данные записывались в кортеж anketa
+            (string name, int age, float footSsize) anketa;
+            
+            Console.Write("Введите Ваше имя: ");
+            anketa.name = Console.ReadLine();
+            Console.Write("Введите возраст: ");
+            bool ageIsNumber = Int32.TryParse(Console.ReadLine(), out anketa.age);
+            Console.WriteLine("Введите размер ноги: ");
+            bool footSizeIsFloat = float.TryParse(Console.ReadLine(), out anketa.footSsize);
+            Console.WriteLine($"Ваше имя: {anketa.name}, возраст: {anketa.age}, размер ноги: {anketa.footSsize}");
+
+            // 4.4.3 Используя такую запись кортежа, измените предыдущую программу. Сначала отобразите на экран имя и возраст.
+            var (name443, age) = ("Евгения", 27);
+            Console.Write($"Старые данные: имя {name443}, возраст {age}.\nВведите новое имя: ");
+            name443 = Console.ReadLine();
+            Console.Write("Введите новый возраст: ");
+            ageIsNumber = Int32.TryParse(Console.ReadLine(), out age);
+            Console.WriteLine($"Новые данные: имя {name443}, возраст {age}.");
+
+            //4.4.5 Заполните данный кортеж значениями аналогично примерам, разобранным в модуле выше.
+            (string name445, string type, double age, int nameCount) pet;
+            Console.Write("Введите имя вашего pet: ");
+            pet.name445 = Console.ReadLine();
+            Console.Write("Введите тип (кошка, собака, муха и т.п.): ");
+            pet.type = Console.ReadLine();
+            Console.Write("Введите возраст в годах: ");
+            ageIsNumber = double.TryParse(Console.ReadLine(), out pet.age);
+            pet.nameCount = pet.name445.Length;
+            Console.WriteLine("Вы ввели: " + pet.name445 + ", " + pet.type + ", " + pet.age + ". Длина введенного имени равна " + pet.nameCount);
+
+            #endregion 4.4
+
+
+            currentTask:
 
             Console.ReadKey();
         }
