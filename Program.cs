@@ -10,6 +10,8 @@ namespace Part1_Mod4
     {
         static void Main(string[] args)
         {
+            //Это декларация для 4.5.1
+
             goto currentTask;
             #region 4.1
             //4.1.1 Запишите код, который проверяет следующее выражение: переменная A типа string не равна переменной B типа string.
@@ -111,12 +113,12 @@ namespace Part1_Mod4
             Console.WriteLine($"Окончательный результат: {sum}");
 
             //перед 4.5.3 - обращение со строкой как с массивом
-            string name = "Eugenia";
-            foreach (char item in name)
+            string name453 = "Eugenia";
+            foreach (char item in name453)
             {
                 Console.Write(item + " ");
             }
-            Console.WriteLine($"Последняя буквва имени: {name[name.Length - 1]}");
+            Console.WriteLine($"Последняя буквва имени: {name453[name453.Length - 1]}");
             #endregion 4.2
 
             #region 4.3
@@ -292,7 +294,6 @@ namespace Part1_Mod4
             #region 4.4
             // 4.4.2 Модифицируйте свою программу для ввода личной информации пользователя так, чтобы данные записывались в кортеж anketa
             (string name, int age, float footSsize) anketa;
-            
             Console.Write("Введите Ваше имя: ");
             anketa.name = Console.ReadLine();
             Console.Write("Введите возраст: ");
@@ -324,6 +325,49 @@ namespace Part1_Mod4
 
 
             currentTask:
+            #region 4.5
+            //4.5.1 фамилии, логине, длине логина, наличии/отсутствии у пользователя питомца, возрасте пользователя, трех любимых цветах пользователя
+            //Не совсем понятно, зачем хранить LoginLength
+            (string FirstName, string LastName, string Login, int LoginLength, bool hasPet, string[] FavColors, double Age)[] user451 = new (string FirstName, string LastName, string Login, int LoginLength, bool hasPet, string[] FavColors, double Age)[3];
+
+            for (int i = 0; i < user451.Length; i++)
+            {
+                Console.WriteLine($"Ввод информации о пользователе {i}");
+
+                Console.Write("Введите имя: ");
+                user451[i].FirstName = Console.ReadLine();
+                Console.Write("Введите фамилию: ");
+                user451[i].LastName = Console.ReadLine();
+                Console.Write("Введите логин: ");
+                user451[i].Login = Console.ReadLine();
+                //4.5.3
+                user451[i].LoginLength = user451[i].Login.Length;
+                //4.5.4 Напишите условие, которое устанавливает значение ИСТИНА в поле наличие/отсутствие животных, если пользователь вводит "Да", и ЛОЖЬ
+                //при любом другом варианте
+                Console.Write("Есть ли у Вас животные? ответьте y или n :");
+                user451[i].hasPet = Console.ReadLine().ToLower() == "y" ? true : false;
+                //4.5.5 Напишите код для ввода возраста пользователя и трех его любимых цветов
+                Console.Write("Введите Ваш возраст: ");
+                ageIsNumber = double.TryParse(Console.ReadLine(), out user451[i].Age);
+                user451[i].FavColors = new string[3];
+                for (int j = 0; j < user451[i].FavColors.Length; j++)
+                {
+                    Console.Write($"Введите любимый цвет № {j}: ");
+                    user451[i].FavColors[j] = Console.ReadLine();
+                }
+            }
+            for(int i = 0; i < user451.Length; i++)
+            {
+                Console.WriteLine($"\nВывод информации о пользователе {i}");
+                Console.Write($"{user451[i].FirstName} {user451[i].LastName}, {user451[i].Login} (length is {user451[i].LoginLength}), {user451[i].Age}" +
+                    $"{(user451[i].hasPet ? "" : "не")} имеет животных \nЛюбимые цвета:");
+                foreach (string s in user451[i].FavColors)
+                {
+                    Console.Write(s + " ");
+                }
+
+            }
+            #endregion
 
             Console.ReadKey();
         }
